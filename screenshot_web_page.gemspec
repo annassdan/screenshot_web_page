@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.summary       = "Screenshot a web page for Rails"
   s.description   = "Screenshot a web page for Rails"
-  s.homepage      = "https://github.com/annassdan/ra/screenshot_web_page"
+  s.homepage      = "https://github.com/annassdan/screenshot_web_page/screenshot_web_page"
   s.license       = "MIT"
 
   # Include your Ruby files and bundled binary
