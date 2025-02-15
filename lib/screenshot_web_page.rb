@@ -4,18 +4,17 @@ class ScreenshotWebPage
 
   def self.of(url)
     begin
-      download_path = File.join(gem_root, VENDOR_DIR)
-
-      unless Dir.exist?(File.join(download_path, "chrome-#{os_type}"))
+      unless File.exist?(chromium_binary)
         ScreenshotWebPage.download_chromium
       end
 
+      download_path = File.join(gem_root, VENDOR_DIR)
       require "puppeteer-ruby"
       require 'securerandom'
       screenshot_path = "tmp/#{SecureRandom.hex(15)}.png"
 
       Puppeteer.launch(
-        headless: false,
+        headless: true,
         executable_path: chromium_binary,
         args: ["--start-maximized"]
       ) do |browser|
@@ -28,6 +27,7 @@ class ScreenshotWebPage
 
       screenshot_path
     rescue Exception => e
+      puts e
       nil
     end
   end
