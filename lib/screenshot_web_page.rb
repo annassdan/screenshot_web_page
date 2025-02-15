@@ -36,13 +36,12 @@ class ScreenshotWebPage
 
 
   def self.download_chromium
-    download_path = File.join(gem_root, VENDOR_DIR)
-
-    if Dir.exist?(File.join(download_path, "chrome-#{os_type}"))
+    if chrome_binary_exist?
       puts "Chrome already downloaded!"
       return
     end
 
+    download_path = File.join(gem_root, VENDOR_DIR)
     chrome_download_url, zip_name = chromium_url_path
     zip_path = File.join(download_path, zip_name)
 
@@ -76,7 +75,6 @@ class ScreenshotWebPage
 
     system("unzip -o #{zip_path} -d #{download_path}")
     File.delete(zip_path)
-    puts "Chrome has been downloaded and extracted to #{download_path}"
   end
 
   private
