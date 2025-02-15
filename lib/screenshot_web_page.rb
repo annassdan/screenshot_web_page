@@ -5,8 +5,11 @@ class ScreenshotWebPage
   def self.of(url)
     begin
       download_path = File.join(gem_root, VENDOR_DIR)
+      puts gem_root
+      where_chrome = File.join(download_path, "chrome-#{os_type}")
 
-      unless Dir.exist?(File.join(download_path, "chrome-#{os_type}"))
+      puts where_chrome
+      unless Dir.exist?(where_chrome)
         ScreenshotWebPage.download_chromium
       end
 
