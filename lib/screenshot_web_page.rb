@@ -8,7 +8,7 @@ class ScreenshotWebPage
 
       require "puppeteer-ruby"
       require 'securerandom'
-      screenshot_path = "tmp/#{SecureRandom.hex(15)}.png"
+      screenshot_path = "app/assets/images/#{SecureRandom.hex(15)}.png"
 
       Puppeteer.launch(
         headless: true,
