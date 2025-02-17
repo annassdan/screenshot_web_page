@@ -8,7 +8,7 @@ class ScreenshotWebPage
 
       require "puppeteer-ruby"
       require 'securerandom'
-      screenshot_path = "app/assets/images/#{SecureRandom.hex(15)}.png"
+      screenshot_path = "#{Rails.root}/app/assets/images/#{SecureRandom.hex(15)}.png"
 
       Puppeteer.launch(
         headless: true,
@@ -27,6 +27,14 @@ class ScreenshotWebPage
       puts e
       nil
     end
+  end
+
+  def self.base64_of(url)
+    image_path = ScreenshotWebPage.of(url)
+    return nil if image_path.nil?
+
+    image_data = File.read(image_path)
+    Base64.strict_encode64(image_data)
   end
 
   def self.chromium_path
